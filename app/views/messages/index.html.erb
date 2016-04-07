@@ -11,7 +11,6 @@
     <% end %>
   </div>
 </div>
-
 <%= form_for(@message) do |f| %>
 <% if @message.errors.present? %>
 <div class="alert alert-danger">
@@ -25,7 +24,6 @@
     </ul>
 </div>
 <% end %>
-
   名前:
   <%= f.text_field :name, class: "form-control" %>
 

@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
    # redirect_to 'http://www.google.co.jp/'
     else
    #メッセージが保存できなかった場合
-     @message = Message.all
+     @messages = Message.all
      flash.now[:alert] ="メッセージの保存に失敗しました。"
      render 'index'
     end
