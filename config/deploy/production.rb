@@ -1,5 +1,5 @@
 
-set :deploy_to, "/home/wkojiro/message"
+set :deploy_to, "/home/wkojiro/message-board2"
 set :branch, "master"
 set :user, "wkojiro"
 set :rails_env, "production"
