@@ -21,7 +21,7 @@ require "capistrano/deploy"
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
-require 'capistrano/rails/unicorn'
+require 'capistrano3/unicorn'
 
 # require 'capistrano/passenger'
 
