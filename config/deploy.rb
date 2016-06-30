@@ -8,7 +8,7 @@ set :linked_files, %w{ config/database.yml config/secrets.yml }
 set :linked_dirs, %w{
   log tmp/pids tmp/cache tmp/sockets config/unicorn
 }
-
+set :unicorn_pid, "/tmp/unicorn_#{application}.pid"
 #
 #
 # unicornの停止がCapからできない場合は下記参照
