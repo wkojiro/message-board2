@@ -26,11 +26,20 @@ before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
 
   old_pid = "#{server.config[:pid]}.oldbin"
-    if old_pid != server.pid
+    # if old_pid != server.pid
+      if File.exists?(old_pid) && server.pid != old_pid
       begin
         # sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
         # Process.kill(sig, File.read(old_pid).to_i)
-         Process.kill "QUIT", File.read(old_pid).to_i  
+        # Process.kill "QUIT", File.read(old_pid).to_i  
+       # http://kray.jp/blog/troubleshooting-rails-unicorn/
+     Process.kill("WINCH", File.read(old_pid).to_i)
+      Thread.new {
+        sleep 30
+        Process.kill("KILL", File.read(old_pid).to_i)
+      }
+
+
       rescue Errno::ENOENT, Errno::ESRCH
       end
     end
