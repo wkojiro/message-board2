@@ -8,8 +8,9 @@ working_directory "/home/wkojiro/#{application}" + "/current"
 
 #pid "/home/trails/example2/#{application}/tmp/unicorn_#{application}.pid"       # PIDファイル出力先
 
-listen "/tmp/unicorn_#{application}.sock"
-pid "/tmp/unicorn_#{application}.pid"
+##{working_directory}を追加
+listen "#{working_directory}/tmp/unicorn_#{application}.sock"
+pid "#{working_directory}/tmp/unicorn_#{application}.pid"
 
 
 timeout 60
