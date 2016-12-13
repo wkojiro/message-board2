@@ -8,9 +8,9 @@ set :linked_files, %w{ config/database.yml config/secrets.yml }
 set :linked_dirs, %w{
   log tmp/pids tmp/cache tmp/sockets config/unicorn
 }
-set :unicorn_pid, "home/wkojiro/#{application}/current/tmp/unicorn_#{application}.pid"
+set :unicorn_pid, "/tmp/unicorn_#{application}.pid"
 
-
+set :rails_env, 'production'
 # サーバー上に保持する過去世代数 20161213
 set :keep_releases, 5
 #
