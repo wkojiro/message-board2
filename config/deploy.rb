@@ -5,7 +5,7 @@ set :application, 'message-board2'
 set :repo_url, 'https://github.com/wkojiro/message-board2.git'
 set :deploy_to, '/home/wkojiro/message-board2'
 
-# set :linked_files, %w{ config/database.yml config/secrets.yml }
+set :linked_files, %w{ config/database.yml config/secrets.yml }
 # set :linked_dirs, %w{
 #   log tmp/pids tmp/cache tmp/sockets config/unicorn
 # }
