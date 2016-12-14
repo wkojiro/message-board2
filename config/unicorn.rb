@@ -1,5 +1,5 @@
 ##unicorn.rbの内容
-application = 'message-board2'
+application = 'message-board3'
 
 worker_processes 2   # 立ち上げるworker数
 working_directory "/home/wkojiro/#{application}" + "/current"

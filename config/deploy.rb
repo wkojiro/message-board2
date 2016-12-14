@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
-application = 'message-board2'
-set :application, 'message-board2'
+application = 'message-board3'
+set :application, 'message-board3'
 set :repo_url, 'https://github.com/wkojiro/message-board2.git'
 
 set :linked_files, %w{ config/database.yml config/secrets.yml }
