@@ -22,7 +22,7 @@ test:
 
 production:
   adapter: postgresql
-  database: message-board2
+  database: message-board3
   username: wkojiro
   encoding: utf8
   

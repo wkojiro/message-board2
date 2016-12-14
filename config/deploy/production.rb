@@ -1,11 +1,11 @@
 
-set :deploy_to, "/home/wkojiro/message-board2"
+set :deploy_to, "/home/wkojiro/message-board3"
 set :branch, "master"
 set :user, "wkojiro"
 set :rails_env, "production"
-role :app, ["dev03.leafwrap.net"]
-role :web, ["dev03.leafwrap.net"]
-role :migrator, "dev03.leafwrap.net"
+role :app, ["dev05.leafwrap.net"]
+role :web, ["dev05.leafwrap.net"]
+role :migrator, "dev05.leafwrap.net"
 set :ssh_options,{
     user: 'wkojiro',
     port: 22022,
