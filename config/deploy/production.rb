@@ -3,10 +3,10 @@ set :deploy_to, "/home/wkojiro/message-board3"
 set :branch, "deploytest"
 set :user, "wkojiro"
 set :rails_env, "production"
-role :app, ["dev5.leafwrap.net"]
-role :web, ["dev5.leafwrap.net"]
-role :db, ["dev5.leafwrap.net"]
-role :migrator, "dev5.leafwrap.net"
+role :app, ["dev05.leafwrap.net"]
+role :web, ["dev05.leafwrap.net"]
+role :db, ["dev05.leafwrap.net"]
+role :migrator, "dev05.leafwrap.net"
 set :ssh_options,{
     user: 'wkojiro',
     port: 22022,
