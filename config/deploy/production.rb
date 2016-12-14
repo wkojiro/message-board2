@@ -4,7 +4,7 @@ set :branch, "master"
 set :user, "wkojiro"
 set :rails_env, "production"
 set :unicorn_roles, :web
-set :unicorn_pid, "#{shared_path}/tmp/production_unicorn.pid"
+set :unicorn_pid, "/home/wkojiro/message-board2/shared/tmp/production_unicorn.pid"
 set :unicorn_config_path, "/home/wkojio/message-board2/current/config/unicorn.rb"
 set :unicorn_rack_env, 'production'
 role :app, ["dev03.leafwrap.net"]

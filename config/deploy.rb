@@ -63,11 +63,11 @@ namespace :deploy do
   task :mkdir do
     on roles(:all) do
       # pid ファイル等を管理する tmp ディレクトリを作成しておく
-      execute "mkdir -p #{shared_path}/tmp"
+      execute "mkdir -p /home/wkojiro/message-board2/shared/tmp"
     end
   end
-  task :restart do
-    # deploy:publishing 処理後に Unicorn の再起動タスクを実行（ホットデプロイ
-    invoke 'unicorn:restart'
-  end
+  # task :restart do
+  #   # deploy:publishing 処理後に Unicorn の再起動タスクを実行（ホットデプロイ
+  #   invoke 'unicorn:restart'
+  # end
 end
