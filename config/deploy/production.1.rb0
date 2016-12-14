@@ -1,12 +1,8 @@
 
-# set :deploy_to, "/home/wkojiro/message-board2"
+set :deploy_to, "/home/wkojiro/message-board2"
 set :branch, "master"
 set :user, "wkojiro"
 set :rails_env, "production"
-set :unicorn_roles, :web
-set :unicorn_pid, "#{shared_path}/tmp/production_unicorn.pid"
-set :unicorn_config_path, "/home/wkojio/message-board2/current/config/unicorn.rb"
-set :unicorn_rack_env, 'production'
 role :app, ["dev03.leafwrap.net"]
 role :web, ["dev03.leafwrap.net"]
 role :migrator, "dev03.leafwrap.net"

@@ -1,19 +1,18 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
-
+application = 'message-board2'
 set :application, 'message-board2'
 set :repo_url, 'https://github.com/wkojiro/message-board2.git'
-set :deploy_to, '/home/wkojiro/message-board2'
 
-# set :linked_files, %w{ config/database.yml config/secrets.yml }
-# set :linked_dirs, %w{
-#   log tmp/pids tmp/cache tmp/sockets config/unicorn
-# }
-# set :unicorn_pid, "/tmp/unicorn_#{application}.pid"
+set :linked_files, %w{ config/database.yml config/secrets.yml }
+set :linked_dirs, %w{
+  log tmp/pids tmp/cache tmp/sockets config/unicorn
+}
+set :unicorn_pid, "/tmp/unicorn_#{application}.pid"
 
-# set :rails_env, 'production'
+set :rails_env, 'production'
 # サーバー上に保持する過去世代数 20161213
-# set :keep_releases, 5
+set :keep_releases, 5
 #
 #
 # unicornの停止がCapからできない場合は下記参照
@@ -57,17 +56,15 @@ set :deploy_to, '/home/wkojiro/message-board2'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
-  before :starting, 'deploy:mkdir'
-  task :mkdir do
-    on roles(:all) do
-      # pid ファイル等を管理する tmp ディレクトリを作成しておく
-      execute "mkdir -p #{shared_path}/tmp"
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
   end
-  task :restart do
-    # deploy:publishing 処理後に Unicorn の再起動タスクを実行（ホットデプロイ
-    invoke 'unicorn:restart'
-  end
+
 end

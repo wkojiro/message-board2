@@ -1,52 +1,28 @@
-##unicorn.rbの内容
-application = 'message-board2'
-
-worker_processes 2   # 立ち上げるworker数
-working_directory "/home/wkojiro/#{application}" + "/current"
-
-#listen "/home/trails/example2/#{application}/tmp/unicorn_#{application}.sock"   # Unix Domain Socket
-
-#pid "/home/trails/example2/#{application}/tmp/unicorn_#{application}.pid"       # PIDファイル出力先
-
-##{working_directory}を追加
-listen "/home/wkojiro/#{application}" + "/current/tmp/unicorn_#{application}.sock"
-pid "/home/wkojiro/#{application}" + "/current/tmp/unicorn_#{application}.pid"
-
-
-timeout 60
-
-preload_app true
-
-stdout_path "/home/wkojiro/log/unicorn.stdout_#{application}.log"  # 標準出力ログ出力先
-stderr_path "/home/wkojiro/log/unicorn.stderr_#{application}.log"  # 標準エラー出力ログ出力先
-
-#GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true
-
-before_fork do |server, worker|
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
-
-  old_pid = "#{server.config[:pid]}.oldbin"
-    # if old_pid != server.pid
-      if File.exists?(old_pid) && server.pid != old_pid
-      begin
-        # sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-        # Process.kill(sig, File.read(old_pid).to_i)
-        # Process.kill "QUIT", File.read(old_pid).to_i  
-       # http://kray.jp/blog/troubleshooting-rails-unicorn/
-     Process.kill("WINCH", File.read(old_pid).to_i)
-      Thread.new {
-        sleep 30
-        Process.kill("KILL", File.read(old_pid).to_i)
-      }
-
-
-      rescue Errno::ENOENT, Errno::ESRCH
-      end
-    end
-
-    # sleep 1
-  end
-
-after_fork do |server, worker|
-  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+# vim config/unicorn.rb
+def rails_root
+  File.expand_path('../../', __FILE__)
 end
+
+def rails_env_
+  ENV['RAILS_ENV'] || "development"
+end
+
+def shared_path
+  "/home/wkojiro/message-board2/shared"
+end
+
+def path_by_rails_env
+  if rails_env == "production"
+    shared_path
+  else
+    rails_root
+  end
+end
+
+worker_processes 2
+working_directory rails_root
+listen "#{path_by_rails_env}/tmp/#{rails_env}_unicorn.sock"
+pid "#{path_by_rails_env}/tmp/#{rails_env}_unicorn.pid"
+stderr_path "#{rails_root}/log/#{rails_env}_unicorn_error.log"
+stdout_path "#{rails_root}/log/#{rails_env}_unicorn.log"
+preload_app true
