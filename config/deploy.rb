@@ -58,13 +58,35 @@ set :keep_releases, 5
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+  desc 'Upload database.yml'
+  task :upload do
+    on roles(:app) do |host|
+      if test "[ ! -d #{shared_path}/config ]"
+        execute "mkdir -p #{shared_path}/config"
+      end
+      upload!('config/database.yml', "#{shared_path}/config/database.yml")
     end
   end
+
+  desc 'Create Database'
+  task :db_create do
+    on roles(:db) do |host|
+      with rails_env: fetch(:rails_env) do
+        within current_path do
+          execute :bundle, :exec, :rake, 'db:create'
+      end
+      end
+    end
+  end
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app) do
+      invoke 'unicorn:restart'
+    end
+  end
+
+  before :starting, :upload
+  after :publishing, :restart
 
 end
