@@ -1,6 +1,7 @@
 # vim config/unicorn.rb
 def rails_root
-  File.expand_path('../../', __FILE__)
+  # File.expand_path('../../', __FILE__)
+  "/home/wkojiro/message-board2/current"
 end
 
 def rails_env_
