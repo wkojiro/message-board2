@@ -6,9 +6,9 @@ set :repo_url, 'https://github.com/wkojiro/message-board2.git'
 set :deploy_to, '/home/wkojiro/message-board2'
 
 set :linked_files, %w{ config/database.yml config/secrets.yml }
-# set :linked_dirs, %w{
-#   log tmp/pids tmp/cache tmp/sockets config/unicorn
-# }
+set :linked_dirs, %w{
+  log tmp/pids tmp/cache tmp/sockets config/unicorn
+}
 # set :unicorn_pid, "/tmp/unicorn_#{application}.pid"
 
 # set :rails_env, 'production'
