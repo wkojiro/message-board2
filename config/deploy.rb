@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.7.0'
 application = 'message-board3'
 set :application, 'message-board3'
 set :repo_url, 'https://github.com/wkojiro/message-board2.git'
