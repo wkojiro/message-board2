@@ -5,6 +5,7 @@ set :user, "wkojiro"
 set :rails_env, "production"
 role :app, ["dev5.leafwrap.net"]
 role :web, ["dev5.leafwrap.net"]
+role :db, ["dev5.leafwrap.net"]
 role :migrator, "dev5.leafwrap.net"
 set :ssh_options,{
     user: 'wkojiro',
