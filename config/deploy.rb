@@ -66,8 +66,8 @@ namespace :deploy do
       execute "mkdir -p /home/wkojiro/message-board2/shared/tmp"
     end
   end
-  # task :restart do
-  #   # deploy:publishing 処理後に Unicorn の再起動タスクを実行（ホットデプロイ
-  #   invoke 'unicorn:restart'
-  # end
+  task :restart do
+    # deploy:publishing 処理後に Unicorn の再起動タスクを実行（ホットデプロイ
+    invoke 'unicorn:restart'
+  end
 end
