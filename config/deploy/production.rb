@@ -1,5 +1,6 @@
 
 # set :deploy_to, "/home/wkojiro/message-board2"
+server 'dev03.leafwrap.net', user: 'wkojiro', roles: %w{web app db}
 set :branch, "master"
 set :user, "wkojiro"
 set :rails_env, "production"
